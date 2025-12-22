@@ -1,21 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-class DashboardPage extends StatefulWidget {
-  const DashboardPage({super.key});
+class DashboardPage extends StatelessWidget {
+  const DashboardPage({super.key, required this.navigationShell});
 
-  @override
-  State<DashboardPage> createState() => _DashboardPageState();
-}
+  final StatefulNavigationShell navigationShell;
 
-class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Dashboard')),
-      body: SafeArea(
-        child: const Center(
-          child: Text('Dashboard Page', style: TextStyle(fontSize: 24)),
-        ),
+      body: navigationShell,
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.local_offer_outlined),
+            label: 'Offers',
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.person_outline_rounded),
+            label: 'Profile',
+          ),
+        ],
+        currentIndex: navigationShell.currentIndex,
+        onTap: (index) {
+          navigationShell.goBranch(index);
+        },
       ),
     );
   }
