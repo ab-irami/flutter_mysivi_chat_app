@@ -7,14 +7,15 @@ part 'chat_history_event.dart';
 part 'chat_history_state.dart';
 
 class ChatHistoryBloc extends Bloc<ChatHistoryEvent, ChatHistoryState> {
-  ChatHistoryBloc() : super(ChatHistoryInitial()) {
+  final ChatHistoryServices _chatHistoryServices;
+  ChatHistoryBloc({ChatHistoryServices? chatHistoryServices})
+    : _chatHistoryServices =
+          chatHistoryServices ?? ChatHistoryServicesImpl.instance,
+      super(ChatHistoryInitial()) {
     on<LoadChatHistory>((event, emit) async {
       emit(ChatHistoryLoading());
-      final chatHistories = await ChatHistoryServicesImpl.instance
-          .getChatHistory();
+      final chatHistories = await _chatHistoryServices.getChatHistory();
       emit(ChatHistoryLoaded(chatHistories));
     });
-
-    
   }
 }

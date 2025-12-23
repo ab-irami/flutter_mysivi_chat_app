@@ -8,6 +8,10 @@ abstract class ChatServices {
 }
 
 class ChatServicesImpl implements ChatServices {
+
+  ChatServicesImpl._();
+  static final ChatServicesImpl instance = ChatServicesImpl._();
+
   String apiEndpoint = 'https://dummyjson.com/comments/';
 
   @override

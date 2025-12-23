@@ -5,15 +5,16 @@ import 'package:flutter_mysivi_chat_app/services/translator_services.dart';
 part 'translation_state.dart';
 
 class TranslationCubit extends Cubit<TranslationState> {
-  final TranslatorServicesImpl _translator = TranslatorServicesImpl();
+  final TranslatorServices _translator;
 
-  TranslationCubit() : super(TranslationInitial());
+  TranslationCubit({TranslatorServices? translator})
+    : _translator = translator ?? TranslatorServicesImpl.instance,
+      super(TranslationInitial());
 
   Future<void> translateText(String text) async {
     emit(TranslationLoading());
     try {
       final translatedText = await _translator.translateText(text);
-      print("Translated text: $translatedText");
       emit(TranslationLoaded(translatedText));
     } catch (e) {
       emit(TranslationInitial());

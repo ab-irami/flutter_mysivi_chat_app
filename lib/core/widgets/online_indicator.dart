@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mysivi_chat_app/core/extensions/context_extension.dart';
 
 class OnlineIndicatorAvatar extends StatelessWidget {
   final String letter;
@@ -17,7 +18,16 @@ class OnlineIndicatorAvatar extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        CircleAvatar(radius: size / 2, child: Text(letter)),
+        CircleAvatar(
+          radius: size / 2,
+          child: Text(
+            letter,
+            style: context.bodyLarge?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        ),
 
         if (isOnline)
           Positioned(

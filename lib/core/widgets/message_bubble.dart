@@ -66,11 +66,12 @@ class MessageBubble extends StatelessWidget {
                   child: SelectableText(
                     text,
                     onSelectionChanged: onSelectionChanged,
-                    enableInteractiveSelection: false,
                     style: TextStyle(
                       color: isMe == true ? Colors.white : Colors.black87,
                       fontSize: 15,
                     ),
+                    contextMenuBuilder: (context, editableTextState) =>
+                        const SizedBox.shrink(),
                   ),
                 ),
               ),

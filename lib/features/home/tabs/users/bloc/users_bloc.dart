@@ -7,10 +7,13 @@ part 'users_event.dart';
 part 'users_state.dart';
 
 class UsersBloc extends Bloc<UsersEvent, UsersState> {
-  UsersBloc() : super(UsersInitial()) {
+  final UserServices _usersServices;
+  UsersBloc({UserServices? usersServices})
+    : _usersServices = usersServices ?? UsersServicesImpl.instance,
+      super(UsersInitial()) {
     on<LoadUsers>((event, emit) async {
       emit(UsersLoading());
-      final users = await UsersServicesImpl.instance.getAllUsers();
+      final users = await _usersServices.getAllUsers();
       emit(UsersLoaded(users));
     });
 

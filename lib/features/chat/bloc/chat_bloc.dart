@@ -7,9 +7,11 @@ part 'chat_event.dart';
 part 'chat_state.dart';
 
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
-  final ChatServices _chatServices = ChatServicesImpl();
+  final ChatServices _chatServices;
 
-  ChatBloc() : super(ChatInitial()) {
+  ChatBloc({ChatServices? chatServices})
+    : _chatServices = chatServices ?? ChatServicesImpl.instance,
+      super(ChatInitial()) {
     on<LoadMessages>(_onLoadMessages);
     on<SendMessage>(_onSendMessage);
     on<ReceiveMessage>(_onReceiveMessage);

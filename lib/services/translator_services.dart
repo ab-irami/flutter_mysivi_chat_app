@@ -7,6 +7,10 @@ abstract class TranslatorServices {
 }
 
 class TranslatorServicesImpl implements TranslatorServices {
+
+  TranslatorServicesImpl._();
+  static final TranslatorServicesImpl instance = TranslatorServicesImpl._();
+
   String apiEndpoint =
       'https://ftapi.pythonanywhere.com/translate?sl=en&dl=fr&text=';
 
@@ -17,14 +21,12 @@ class TranslatorServicesImpl implements TranslatorServices {
       final response = await http.get(uri);
       if (response.statusCode == 200) {
         final Map<String, dynamic> json = jsonDecode(response.body);
-        print("Translation response: $json");
         final content = json['destination-text'] as String? ?? 'Whats up?';
         return content;
       }
 
       return text;
     } catch (err) {
-      print("Error during translation: $err");
       return text;
     }
   }

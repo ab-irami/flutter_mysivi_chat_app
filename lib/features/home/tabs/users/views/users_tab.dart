@@ -93,6 +93,7 @@ class UsersTab extends StatelessWidget {
                   controller: nameController,
                   decoration: const InputDecoration(
                     labelText: 'Name',
+                    hintText: 'Enter user name',
                     border: OutlineInputBorder(),
                   ),
                   validator: (value) {
