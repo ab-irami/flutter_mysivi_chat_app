@@ -8,7 +8,6 @@ abstract class ChatServices {
 }
 
 class ChatServicesImpl implements ChatServices {
-
   ChatServicesImpl._();
   static final ChatServicesImpl instance = ChatServicesImpl._();
 
@@ -28,8 +27,8 @@ class ChatServicesImpl implements ChatServices {
       }
 
       return '';
-    } catch (err) {
-      return '';
+    } on Exception catch (err) {
+      throw Exception(err);
     }
   }
 }

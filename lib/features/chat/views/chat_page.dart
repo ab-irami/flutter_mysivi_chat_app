@@ -47,6 +47,8 @@ class _ChatPageState extends State<ChatPage> {
             context.showSnack("Translation: ${state.translatedText}");
           } else if (state is TranslationLoading) {
             context.showSnack("Translating...");
+          } else if (state is TranslationError) {
+            context.showSnack("Translation Error: ${state.message}");
           }
         },
         child: Scaffold(

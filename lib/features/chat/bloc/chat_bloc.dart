@@ -63,7 +63,6 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       emit(ChatLoaded(messages: [...messages, incoming], isTyping: false));
     } catch (e) {
       emit(ChatLoaded(messages: messages, isTyping: false));
-
       emit(ChatError('Failed to send message'));
     }
   }

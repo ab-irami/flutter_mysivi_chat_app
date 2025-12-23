@@ -12,12 +12,15 @@ class TranslationCubit extends Cubit<TranslationState> {
       super(TranslationInitial());
 
   Future<void> translateText(String text) async {
+    if (isClosed) return;
     emit(TranslationLoading());
     try {
       final translatedText = await _translator.translateText(text);
+      if (isClosed) return;
       emit(TranslationLoaded(translatedText));
     } catch (e) {
-      emit(TranslationInitial());
+      if (isClosed) return;
+      emit(TranslationError(e.toString()));
     }
   }
 }

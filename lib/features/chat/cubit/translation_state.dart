@@ -12,3 +12,9 @@ final class TranslationLoaded extends TranslationState {
 
   TranslationLoaded(this.translatedText);
 }
+
+final class TranslationError extends TranslationState {
+  final String message;
+
+  TranslationError(this.message);
+}

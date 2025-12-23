@@ -7,7 +7,6 @@ abstract class TranslatorServices {
 }
 
 class TranslatorServicesImpl implements TranslatorServices {
-
   TranslatorServicesImpl._();
   static final TranslatorServicesImpl instance = TranslatorServicesImpl._();
 
@@ -26,8 +25,8 @@ class TranslatorServicesImpl implements TranslatorServices {
       }
 
       return text;
-    } catch (err) {
-      return text;
+    } on Exception catch (err) {
+      throw Exception(err);
     }
   }
 }
