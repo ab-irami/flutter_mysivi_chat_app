@@ -9,7 +9,6 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Dashboard')),
       body: navigationShell,
       bottomNavigationBar: BottomNavigationBar(
         items: [

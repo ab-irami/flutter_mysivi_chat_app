@@ -20,7 +20,7 @@ class _SplashViewState extends State<SplashView> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await Future.delayed(const Duration(seconds: 1));
       if (!mounted) return;
-      context.goNamed(AppRouteNames.dashboard);
+      context.goNamed(AppRouteNames.home);
     });
   }
 

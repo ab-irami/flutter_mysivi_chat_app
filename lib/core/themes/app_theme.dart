@@ -12,7 +12,7 @@ class AppTheme {
       surface: AppColors.surface,
     ),
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.onPrimary,
       foregroundColor: Colors.white,
       elevation: 0,
     ),

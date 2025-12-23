@@ -6,6 +6,7 @@ import 'package:flutter_mysivi_chat_app/features/dashboard/views/dashboard_page.
 import 'package:flutter_mysivi_chat_app/features/home/views/home_page.dart';
 import 'package:flutter_mysivi_chat_app/features/offers/views/offers_page.dart';
 import 'package:flutter_mysivi_chat_app/features/profile/views/profile_page.dart';
+import 'package:flutter_mysivi_chat_app/features/splash/views/splash_page.dart';
 import 'package:go_router/go_router.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -15,12 +16,11 @@ final GlobalKey<NavigatorState> shellNavigatorKey = GlobalKey<NavigatorState>();
 final appRouter = GoRouter(
   navigatorKey: rootNavigatorKey,
   observers: [AppNavigationObserver()],
-  initialLocation: AppRoutes.home,
+  initialLocation: AppRoutes.splash,
   routes: [
-    StatefulShellRoute(
+    StatefulShellRoute.indexedStack(
       branches: [
         StatefulShellBranch(
-          navigatorKey: shellNavigatorKey,
           routes: [
             GoRoute(
               path: AppRoutes.home,
@@ -48,7 +48,7 @@ final appRouter = GoRouter(
           ],
         ),
       ],
-      navigatorContainerBuilder: (context, navigationShell, children) =>
+      builder: (context, state, navigationShell) =>
           DashboardPage(navigationShell: navigationShell),
     ),
 
@@ -57,6 +57,14 @@ final appRouter = GoRouter(
       name: AppRouteNames.chat,
       builder: (context, state) {
         return ChatPage();
+      },
+    ),
+
+    GoRoute(
+      path: AppRoutes.splash,
+      name: AppRouteNames.splash,
+      builder: (context, state) {
+        return SplashView();
       },
     ),
   ],
