@@ -56,7 +56,7 @@ All state logic is separated from UI, and services are injected through construc
 
 ---
 
-## ✅ Design Principles
+## Design Principles
 
 - Clear separation of concerns
 - No business logic inside widgets
