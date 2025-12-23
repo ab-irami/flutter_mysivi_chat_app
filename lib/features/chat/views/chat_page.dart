@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_mysivi_chat_app/core/extensions/context_extension.dart';
 import 'package:flutter_mysivi_chat_app/core/themes/app_colors.dart';
+import 'package:flutter_mysivi_chat_app/core/utils/responsive.dart';
 import 'package:flutter_mysivi_chat_app/core/widgets/message_bubble.dart';
 import 'package:flutter_mysivi_chat_app/features/chat/bloc/chat_bloc.dart';
 import 'package:flutter_mysivi_chat_app/features/chat/cubit/translation_cubit.dart';
@@ -87,7 +88,7 @@ class _ChatPageState extends State<ChatPage> {
                             "chatMessagesListView_//${widget.userId}",
                           ),
                           controller: _scrollController,
-                          padding: const EdgeInsets.all(12),
+                          padding: Responsive.padAll(12),
                           itemCount: messages.length + (showTyping ? 1 : 0),
                           itemBuilder: (context, index) {
                             if (index < messages.length) {
@@ -115,7 +116,7 @@ class _ChatPageState extends State<ChatPage> {
                                     },
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
+                                    padding: Responsive.padSymmetric(
                                       horizontal: 12,
                                     ),
                                     child: Text(
@@ -124,7 +125,7 @@ class _ChatPageState extends State<ChatPage> {
                                           .toIso8601String()
                                           .substring(11, 16),
                                       style: TextStyle(
-                                        fontSize: 10,
+                                        fontSize: Responsive.sp(10),
                                         color: isMe
                                             ? Colors.black54
                                             : Colors.black45,
@@ -152,12 +153,12 @@ class _ChatPageState extends State<ChatPage> {
                 Builder(
                   builder: (innerContext) {
                     return Padding(
-                      padding: const EdgeInsets.symmetric(
+                      padding: Responsive.padSymmetric(
                         horizontal: 12,
                         vertical: 8,
                       ),
                       child: Container(
-                        padding: const EdgeInsets.symmetric(
+                        padding: Responsive.padSymmetric(
                           horizontal: 12,
                           vertical: 6,
                         ),
@@ -181,7 +182,7 @@ class _ChatPageState extends State<ChatPage> {
                               ),
                             ),
 
-                            const SizedBox(width: 8),
+                            SizedBox(width: Responsive.w(8)),
 
                             ValueListenableBuilder<TextEditingValue>(
                               valueListenable: _controller,
@@ -193,7 +194,7 @@ class _ChatPageState extends State<ChatPage> {
                                       ? null
                                       : () => _sendMessage(context),
                                   child: Container(
-                                    padding: const EdgeInsets.all(10),
+                                    padding: Responsive.padAll(10),
                                     decoration: BoxDecoration(
                                       color: isEmpty
                                           ? AppColors.background
@@ -202,7 +203,7 @@ class _ChatPageState extends State<ChatPage> {
                                     ),
                                     child: Icon(
                                       Icons.send,
-                                      size: 18,
+                                      size: Responsive.w(18),
                                       color: isEmpty
                                           ? Colors.white70
                                           : Colors.white,

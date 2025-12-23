@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mysivi_chat_app/core/extensions/context_extension.dart';
 import 'package:flutter_mysivi_chat_app/core/themes/app_colors.dart';
+import 'package:flutter_mysivi_chat_app/core/utils/responsive.dart';
 
 class MessageBubble extends StatelessWidget {
   const MessageBubble({
@@ -26,7 +27,7 @@ class MessageBubble extends StatelessWidget {
     final maxBubbleWidth = MediaQuery.of(context).size.width * 0.68;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
+      padding: Responsive.padSymmetric(vertical: 4),
       child: Row(
         mainAxisAlignment: isMe == true
             ? MainAxisAlignment.end
@@ -35,12 +36,12 @@ class MessageBubble extends StatelessWidget {
         children: [
           if (isMe == false)
             CircleAvatar(
-              radius: 16,
+              radius: Responsive.w(16),
               backgroundColor: Colors.grey.shade300,
               child: Text(avatarLetter, style: context.bodyMedium),
             ),
 
-          if (isMe == false) const SizedBox(width: 3),
+          if (isMe == false) SizedBox(width: Responsive.w(3)),
 
           Flexible(
             child: ConstrainedBox(
@@ -48,18 +49,18 @@ class MessageBubble extends StatelessWidget {
               child: Material(
                 elevation: 3,
                 borderRadius: BorderRadius.only(
-                  topLeft: const Radius.circular(30),
-                  topRight: const Radius.circular(30),
+                  topLeft: Radius.circular(Responsive.w(30)),
+                  topRight: Radius.circular(Responsive.w(30)),
                   bottomLeft: isMe == true
-                      ? const Radius.circular(30)
+                      ? Radius.circular(Responsive.w(30))
                       : Radius.zero,
                   bottomRight: isMe == false
-                      ? const Radius.circular(30)
+                      ? Radius.circular(Responsive.w(30))
                       : Radius.zero,
                 ),
                 color: isMe == true ? AppColors.secondary : Colors.white,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
+                  padding: Responsive.padSymmetric(
                     horizontal: 16,
                     vertical: 10,
                   ),
@@ -68,7 +69,7 @@ class MessageBubble extends StatelessWidget {
                     onSelectionChanged: onSelectionChanged,
                     style: TextStyle(
                       color: isMe == true ? Colors.white : Colors.black87,
-                      fontSize: 15,
+                      fontSize: Responsive.sp(15),
                     ),
                     contextMenuBuilder: (context, editableTextState) =>
                         const SizedBox.shrink(),
@@ -78,11 +79,11 @@ class MessageBubble extends StatelessWidget {
             ),
           ),
 
-          if (isMe == true) const SizedBox(width: 3),
+          if (isMe == true) SizedBox(width: Responsive.w(3)),
 
           if (isMe == true)
             CircleAvatar(
-              radius: 16,
+              radius: Responsive.w(16),
               backgroundColor: AppColors.secondary,
               child: Text(
                 'Y',

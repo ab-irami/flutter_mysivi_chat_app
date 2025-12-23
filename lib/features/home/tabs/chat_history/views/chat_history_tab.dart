@@ -23,7 +23,7 @@ class ChatHistoryTab extends StatelessWidget {
           }
           if (state is ChatHistoryLoaded) {
             return ListView.builder(
-              key: PageStorageKey("usersListView"),
+              key: PageStorageKey("chatHistoryView"),
               itemCount: state.chatHistories.length,
               itemBuilder: (context, index) {
                 return ListTile(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mysivi_chat_app/core/extensions/context_extension.dart';
+import 'package:flutter_mysivi_chat_app/core/utils/responsive.dart';
 
 class OnlineIndicatorAvatar extends StatelessWidget {
   final String letter;
@@ -19,7 +20,7 @@ class OnlineIndicatorAvatar extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         CircleAvatar(
-          radius: size / 2,
+          radius: Responsive.w(size) / 2,
           child: Text(
             letter,
             style: context.bodyLarge?.copyWith(
@@ -31,17 +32,17 @@ class OnlineIndicatorAvatar extends StatelessWidget {
 
         if (isOnline)
           Positioned(
-            bottom: -2,
-            right: -2,
+            bottom: Responsive.h(-2),
+            right: Responsive.w(-2),
             child: Container(
-              width: size * 0.3,
-              height: size * 0.3,
+              width: Responsive.w(size * 0.3),
+              height: Responsive.w(size * 0.3),
               decoration: BoxDecoration(
                 color: Colors.green,
                 shape: BoxShape.circle,
                 border: Border.all(
                   color: Theme.of(context).scaffoldBackgroundColor,
-                  width: 2,
+                  width: Responsive.w(2),
                 ),
               ),
             ),

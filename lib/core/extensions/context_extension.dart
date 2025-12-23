@@ -60,7 +60,7 @@ extension ContextExtension on BuildContext {
             : null,
         duration: isPinned ?? false
             ? const Duration(days: 1)
-            : const Duration(seconds: 4),
+            : const Duration(seconds: 3),
         backgroundColor: (isError ?? false)
             ? Colors.redAccent
             : color ?? AppColors.primary,

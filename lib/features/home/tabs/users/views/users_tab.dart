@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_mysivi_chat_app/core/extensions/context_extension.dart';
 import 'package:flutter_mysivi_chat_app/core/extensions/string_extension.dart';
+import 'package:flutter_mysivi_chat_app/core/utils/responsive.dart';
 import 'package:flutter_mysivi_chat_app/core/widgets/online_indicator.dart';
 import 'package:flutter_mysivi_chat_app/features/home/tabs/users/bloc/users_bloc.dart';
 
@@ -44,8 +45,8 @@ class UsersTab extends StatelessWidget {
                 ),
 
                 Positioned(
-                  bottom: 16,
-                  right: 16,
+                  bottom: Responsive.h(16),
+                  right: Responsive.w(16),
                   child: FloatingActionButton(
                     onPressed: () {
                       _buildAddUserBottomSheet(context);
@@ -72,10 +73,10 @@ class UsersTab extends StatelessWidget {
       builder: (sheetContext) {
         return Padding(
           padding: EdgeInsets.only(
-            left: 16,
-            right: 16,
-            top: 16,
-            bottom: MediaQuery.of(context).viewInsets.bottom + 16,
+            left: Responsive.w(16),
+            right: Responsive.w(16),
+            top: Responsive.h(16),
+            bottom: MediaQuery.of(context).viewInsets.bottom + Responsive.h(16),
           ),
           child: Form(
             key: formKey,
@@ -88,7 +89,7 @@ class UsersTab extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: Responsive.h(16)),
                 TextFormField(
                   controller: nameController,
                   decoration: const InputDecoration(
@@ -104,7 +105,7 @@ class UsersTab extends StatelessWidget {
                   },
                 ),
 
-                const SizedBox(height: 16),
+                SizedBox(height: Responsive.h(16)),
 
                 ElevatedButton(
                   onPressed: () {
