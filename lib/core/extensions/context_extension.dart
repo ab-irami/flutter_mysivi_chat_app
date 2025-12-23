@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mysivi_chat_app/core/themes/app_colors.dart';
 
 extension ContextExtension on BuildContext {
   /// Sizes
@@ -28,5 +29,42 @@ extension ContextExtension on BuildContext {
   // hide keyboard
   void hideKeyboard() {
     FocusScope.of(this).requestFocus(FocusNode());
+  }
+
+  void showSnack(
+    String message, {
+    Color? color,
+    double? fontSize,
+    bool? isError,
+    String? actionLabel,
+    void Function()? action,
+    bool? actionEnabled,
+    bool? isPinned,
+  }) {
+    ScaffoldMessenger.of(this).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          style: titleMedium?.copyWith(
+            color: AppColors.background,
+            fontSize: fontSize ?? 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        action: actionEnabled ?? false
+            ? SnackBarAction(
+                label: actionLabel ?? 'Dismiss',
+                onPressed: action ?? () {},
+                textColor: AppColors.background,
+              )
+            : null,
+        duration: isPinned ?? false
+            ? const Duration(days: 1)
+            : const Duration(seconds: 3),
+        backgroundColor: (isError ?? false)
+            ? Colors.redAccent
+            : color ?? AppColors.secondary.withValues(alpha: 0.6),
+      ),
+    );
   }
 }

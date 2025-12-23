@@ -3,9 +3,14 @@ import 'dart:math';
 
 import 'package:http/http.dart' as http;
 
-class ChatServices {
+abstract class ChatServices {
+  Future<String> fetchRandomMessage();
+}
+
+class ChatServicesImpl implements ChatServices {
   String apiEndpoint = 'https://dummyjson.com/comments/';
 
+  @override
   Future<String> fetchRandomMessage() async {
     try {
       Random random = Random();

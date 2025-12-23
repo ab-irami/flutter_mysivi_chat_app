@@ -6,6 +6,7 @@ class AppTheme {
     brightness: Brightness.light,
     primaryColor: AppColors.primary,
     scaffoldBackgroundColor: AppColors.background,
+    fontFamily: 'Roboto Serif',
     colorScheme: const ColorScheme.light(
       primary: AppColors.primary,
       secondary: AppColors.secondary,

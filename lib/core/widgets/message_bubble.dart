@@ -3,19 +3,25 @@ import 'package:flutter_mysivi_chat_app/core/extensions/context_extension.dart';
 import 'package:flutter_mysivi_chat_app/core/themes/app_colors.dart';
 
 class MessageBubble extends StatelessWidget {
-  const MessageBubble({super.key, this.sender, this.text, this.isMe});
+  const MessageBubble({
+    super.key,
+    required this.sender,
+    required this.text,
+    required this.isMe,
+    this.onSelectionChanged,
+  });
 
-  final String? text;
-  final String? sender;
-  final bool? isMe;
+  final String text;
+  final String sender;
+  final bool isMe;
+  final void Function(TextSelection, SelectionChangedCause?)?
+  onSelectionChanged;
 
   @override
   Widget build(BuildContext context) {
     final avatarLetter = isMe == true
         ? 'Y'
-        : (sender != null && sender!.isNotEmpty
-              ? sender![0].toUpperCase()
-              : '?');
+        : (sender.isNotEmpty ? sender[0].toUpperCase() : '?');
 
     final maxBubbleWidth = MediaQuery.of(context).size.width * 0.68;
 
@@ -57,9 +63,10 @@ class MessageBubble extends StatelessWidget {
                     horizontal: 16,
                     vertical: 10,
                   ),
-                  child: Text(
-                    text ?? '',
-                    softWrap: true,
+                  child: SelectableText(
+                    text,
+                    onSelectionChanged: onSelectionChanged,
+                    enableInteractiveSelection: false,
                     style: TextStyle(
                       color: isMe == true ? Colors.white : Colors.black87,
                       fontSize: 15,

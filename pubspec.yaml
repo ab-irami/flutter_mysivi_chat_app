@@ -28,3 +28,9 @@ flutter:
 
   assets:
     - assets/
+  
+  fonts:
+      - family: Roboto Serif
+        fonts:
+          - asset: assets/fonts/RobotoSerif.ttf
+        

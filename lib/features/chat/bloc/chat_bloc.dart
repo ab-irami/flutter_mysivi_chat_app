@@ -7,7 +7,7 @@ part 'chat_event.dart';
 part 'chat_state.dart';
 
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
-  final ChatServices _chatServices = ChatServices();
+  final ChatServices _chatServices = ChatServicesImpl();
 
   ChatBloc() : super(ChatInitial()) {
     on<LoadMessages>(_onLoadMessages);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_mysivi_chat_app/core/extensions/context_extension.dart';
 import 'package:flutter_mysivi_chat_app/core/extensions/string_extension.dart';
 import 'package:flutter_mysivi_chat_app/core/widgets/online_indicator.dart';
 import 'package:flutter_mysivi_chat_app/features/home/tabs/users/bloc/users_bloc.dart';
@@ -81,9 +82,19 @@ class UsersTab extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                Text(
+                  "Add New User",
+                  style: context.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 16),
                 TextFormField(
                   controller: nameController,
-                  decoration: const InputDecoration(labelText: 'User Name'),
+                  decoration: const InputDecoration(
+                    labelText: 'Name',
+                    border: OutlineInputBorder(),
+                  ),
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
                       return 'Please enter a name';
@@ -103,6 +114,7 @@ class UsersTab extends StatelessWidget {
                     );
 
                     Navigator.pop(sheetContext);
+                    context.showSnack('User added successfully');
                   },
                   child: const Text('Add User'),
                 ),
