@@ -46,7 +46,9 @@ class UsersTab extends StatelessWidget {
                   bottom: 16,
                   right: 16,
                   child: FloatingActionButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _buildAddUserBottomSheet(context);
+                    },
                     child: const Icon(Icons.add),
                   ),
                 ),
@@ -56,6 +58,59 @@ class UsersTab extends StatelessWidget {
           return const Center(child: Text('No users found.'));
         },
       ),
+    );
+  }
+
+  void _buildAddUserBottomSheet(BuildContext context) {
+    final TextEditingController nameController = TextEditingController();
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (sheetContext) {
+        return Padding(
+          padding: EdgeInsets.only(
+            left: 16,
+            right: 16,
+            top: 16,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 16,
+          ),
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextFormField(
+                  controller: nameController,
+                  decoration: const InputDecoration(labelText: 'User Name'),
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Please enter a name';
+                    }
+                    return null;
+                  },
+                ),
+
+                const SizedBox(height: 16),
+
+                ElevatedButton(
+                  onPressed: () {
+                    if (!formKey.currentState!.validate()) return;
+
+                    context.read<UsersBloc>().add(
+                      AddUser(nameController.text.trim()),
+                    );
+
+                    Navigator.pop(sheetContext);
+                  },
+                  child: const Text('Add User'),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

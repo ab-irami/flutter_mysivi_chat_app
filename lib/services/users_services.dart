@@ -29,8 +29,10 @@ class UsersServicesImpl implements UserServices {
     final newUser = UserModel(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       name: name,
-      isOnline: false,
-      lastActive: DateTime.now(),
+      isOnline: _users.length % 2 == 0,
+      lastActive: _users.length % 2 == 0
+          ? DateTime.now()
+          : DateTime.now().subtract(Duration(hours: 1)),
     );
     _users.add(newUser);
   }
