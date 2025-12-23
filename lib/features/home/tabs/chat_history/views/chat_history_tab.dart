@@ -30,8 +30,9 @@ class ChatHistoryTab extends StatelessWidget {
                   onTap: () {
                     context.pushNamed(
                       AppRouteNames.chat,
-                      pathParameters: {
+                      extra: {
                         'userId': state.chatHistories[index].userId,
+                        'userName': state.chatHistories[index].userName,
                       },
                     );
                   },

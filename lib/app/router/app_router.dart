@@ -56,7 +56,11 @@ final appRouter = GoRouter(
       path: AppRoutes.chat,
       name: AppRouteNames.chat,
       builder: (context, state) {
-        return ChatPage();
+        final extra = state.extra as Map<String, dynamic>?;
+
+        final userId = extra?["userId"] as String;
+        final userName = extra?["userName"] as String;
+        return ChatPage(userId: userId, userName: userName);
       },
     ),
 
