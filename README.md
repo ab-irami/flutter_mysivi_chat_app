@@ -1,16 +1,66 @@
-# flutter_mysivi_chat_app
+# Flutter Chat Application
 
-A new Flutter project.
+## Project Overview
 
-## Getting Started
+The application provides:
+- A home screen with tab-based navigation
+- A users list and chat history
+- A chat screen with real-time message flow and typing indicator
+- Translation support on selected message text
 
-This project is a starting point for a Flutter application.
+The app follows a **feature-based architecture**, where each feature owns its UI, state management, and business logic.  
+This makes the codebase easier to scale and reason about as the app grows.
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## State Management
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Bloc** is used for features that involve asynchronous operations and complex state transitions (chat, users, chat history).
+- **Cubit** is used for small, isolated logic such as text translation.
+
+All state logic is separated from UI, and services are injected through constructors to keep the code test-friendly.
+
+---
+
+## Navigation
+
+- **Go Router** is used for navigation
+
+---
+
+## External APIs
+
+- **Random Chat Reply**  
+  API: https://dummyjson.com/comments/  
+  Purpose: Fetches a random comment to simulate an automated chat reply
+
+- **Text Translation**  
+  API: https://ftapi.pythonanywhere.com/translate  
+  Default Language: French  
+  Purpose: Translates selected chat text into French
+
+
+## Testing Approach
+
+### Unit & Widget Tests
+- Test business logic and UI behavior in isolation
+- External services are mocked
+- Focus on state transitions, error handling, and edge cases
+- Designed to be fast and deterministic
+
+### Integration Tests
+- Run the real application
+- Verify complete user flows (navigation, chat, message sending)
+- Network interactions can be mocked at the HTTP level
+- Ensure different parts of the app work together correctly
+
+---
+
+## ✅ Design Principles
+
+- Clear separation of concerns
+- No business logic inside widgets
+- Predictable state management
+- Testability as a first-class concern
+
+---
