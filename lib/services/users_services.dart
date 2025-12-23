@@ -1,4 +1,5 @@
 import 'package:flutter_mysivi_chat_app/models/user_model.dart';
+import 'package:flutter_mysivi_chat_app/services/chat_history_services.dart';
 
 abstract class UserServices {
   Future<void> addUser(String name);
@@ -6,7 +7,9 @@ abstract class UserServices {
 }
 
 class UsersServicesImpl implements UserServices {
-  UsersServicesImpl._();
+  UsersServicesImpl._() {
+    ChatHistoryServicesImpl.instance.ensureUsers(_users);
+  }
 
   static final UsersServicesImpl instance = UsersServicesImpl._();
   final List<UserModel> _users = [
@@ -35,6 +38,7 @@ class UsersServicesImpl implements UserServices {
           : DateTime.now().subtract(Duration(hours: 1)),
     );
     _users.add(newUser);
+    ChatHistoryServicesImpl.instance.addHistoryForUser(newUser);
   }
 
   @override
