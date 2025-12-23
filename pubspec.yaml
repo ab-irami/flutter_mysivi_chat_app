@@ -30,7 +30,7 @@ flutter:
     - assets/
   
   fonts:
-      - family: Roboto Serif
+      - family: Roboto
         fonts:
-          - asset: assets/fonts/RobotoSerif.ttf
+          - asset: assets/fonts/Roboto.ttf
         
